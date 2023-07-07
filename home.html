@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <ul class="navbar-items">
+            <li><a href="home.html" class="nav-item">Home</a></li>
+            <li><a href="#" class="nav-item">Cart</a></li>
+        </ul>
+    </div>
+    <div id="books"></div>
+    
+    <script>
+        fetch("http://openlibrary.org/search.json?q=harrypotter&page=1").then(a => a.json()).then(response => {
+            for(var i=0;i<5;i++) {
+                document.getElementById("books").innerHTML += "<h2 class='book-title'>"+response.docs[i].title+"</h2><br><p>"+response.docs[i].author_name[0]+"</p><br><img src='http://covers.openlibrary.org/b/isbn/"+response.docs[i].isbn[0]+"-M.jpg'><br>";
+            }
+        });
+        
+    </script>
+</body>
+</html>
